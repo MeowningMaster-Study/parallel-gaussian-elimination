@@ -1,4 +1,18 @@
 module Main where
 
+import Gauss
+import Matrix
+import Text.Printf (printf)
+import Data.Time.Clock (diffUTCTime, getCurrentTime)
+import GHC.Conc (numCapabilities)
+
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = do
+  let size = 50
+  putStrLn $ "Parallel (" ++ show numCapabilities ++ " cores)"
+  (mat1, vec1) <- generateRandom size
+  start <- getCurrentTime
+  let ans = gaussianElimination mat1 vec1 True
+  print ans
+  end <- getCurrentTime
+  putStrLn $ "Time: " ++ show (end `diffUTCTime` start)
