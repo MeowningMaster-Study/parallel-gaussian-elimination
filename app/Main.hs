@@ -9,6 +9,7 @@ import GHC.Conc (numCapabilities)
 main :: IO ()
 main = do
   let size = 50
+  putStrLn $ "Matrix size: " ++ show size ++ "x" ++ show size
   putStrLn $ "Parallel (" ++ show numCapabilities ++ " cores)"
   (mat1, vec1) <- generateRandom size
   start <- getCurrentTime
